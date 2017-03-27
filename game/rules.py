@@ -1,11 +1,12 @@
+from collections import defaultdict
 import pieces
 
 class RulesEnforcer(object):
     """
     Enforces the rules of the game
     Examines the move, and determines whether its a valid move or not.
-    
     """
+
     letter_dict = {'a':0,'b':1,'c':2,'d':3,'e':4,'f':5,'g':6,'h':7}
     pos_letters = letter_dict.keys()
     pos_nums = [1,2,3,4,5,6,7,8]
@@ -15,7 +16,8 @@ class RulesEnforcer(object):
     def __init__(self):
         pass
 
-    def possible_moves(self, piece, color, coordinate):
+    @staticmethod
+    def possible_moves(chessboard, piece, color, coordinate):
         """return possible moves of a piece
         
         a number of things need to be taken into a count
@@ -34,26 +36,26 @@ class RulesEnforcer(object):
 
         #pawns
         if piece == 'p':
-            pos_moves = pieces.Pawn.moves(cords, color, self.chessboard)    
+            pos_moves = pieces.Pawn.moves(cords, color, chessboard)    
         #rook
         elif piece == 'r':
-            pos_moves = pieces.Rook.moves(cords, color, self.chessboard)
+            pos_moves = pieces.Rook.moves(cords, color, chessboard)
         
         #knight
         elif piece == 'n':
-            pos_moves = pieces.Knight.moves(cords, color, self.chessboard)
+            pos_moves = pieces.Knight.moves(cords, color, chessboard)
         
         #bishop
         elif piece == 'b':
-            pos_moves = pieces.Bishop.moves(cords, color, self.chessboard)
+            pos_moves = pieces.Bishop.moves(cords, color, chessboard)
         
         #queen
         elif piece == "q":
-            pos_moves = pieces.Queen.moves(cords, color, self.chessboard)
+            pos_moves = pieces.Queen.moves(cords, color, chessboard)
         
         #king
         elif piece == "k":
-            pos_moves = pieces.King.moves(cords, color, self.chessboard)
+            pos_moves = pieces.King.moves(cords, color, chessboard)
             
         else:                 
             return "invalid inputs!"
@@ -64,8 +66,23 @@ class RulesEnforcer(object):
     def all_possible_moves(color, chessboard):
         """takes as input a chessboard and generates all possible moves
 
-        input:
+        input: 
+            color: 'w' or 'b'
+            chessboard: 8x8 chessboard
+        output: dict of all possible moves 
+            key: piece and position
+            value: list of list of possible moves
         """
+
+        all_moves = defaultdict()
+
+        for row in chessboard:
+            for square in row:
+                if square.split('-')[0] == color:
+
+
+
+
 
 
     @staticmethod

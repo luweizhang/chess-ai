@@ -11,7 +11,8 @@ class TreeNode(object):
     def add_child(self, data):
         self.children.append(child)
 
-class ChessAi(object): 
+class ChessAi(object):
+    #set the value of each of the pieces to be used in the hard coded heuristic algorithm
     piece_values = {'p':1,'r':5,'n':3,'b':3,'q':9,'k':99}
     
     def __init__(self, ai_depth = 1):
