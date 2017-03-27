@@ -133,8 +133,8 @@ class ChessAi(object):
         
         Basically start at the leaf nodes of the tree and backwards compute back to the original
         
-        input: a tree of possible moves
-        output: the best move to make from the current state
+        input: a tree of possible moves (created by the tree generator function)
+        output: the best move to make at the current state (str)
         
         """
         pass

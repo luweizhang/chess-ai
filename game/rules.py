@@ -17,7 +17,7 @@ class RulesEnforcer(object):
         pass
 
     @staticmethod
-    def possible_moves(chessboard, piece, color, coordinate):
+    def possible_moves(chessboard, color, piece, coordinate):
         """return possible moves of a piece
         
         a number of things need to be taken into a count
@@ -29,7 +29,7 @@ class RulesEnforcer(object):
         Example of a cooridinate: a2
         
         """
-        
+
         #break out coordinate into a list of len(2)
         cords = list(coordinate)
         cords[1] = int(cords[1])
@@ -63,22 +63,28 @@ class RulesEnforcer(object):
         return pos_moves
 
     @staticmethod
-    def all_possible_moves(color, chessboard):
+    def all_possible_moves(chessboard, color):
         """takes as input a chessboard and generates all possible moves
 
         input: 
-            color: 'w' or 'b'
+            color: color that you want to generate moves for, 'w' or 'b'
             chessboard: 8x8 chessboard
         output: dict of all possible moves 
             key: piece and position
             value: list of list of possible moves
         """
 
+        #dict for storing all the moves
         all_moves = defaultdict()
+
+
 
         for row in chessboard:
             for square in row:
                 if square.split('-')[0] == color:
+
+                    piece = square.split('-')[1]
+                    RulesEnforcer.possible_moves(chessboard, color, piece, coordinate)
 
 
 
@@ -91,7 +97,7 @@ class RulesEnforcer(object):
         input: list of list of moves
         output: list of list of moves, with out of bound moves removed
         """
-        
+
         to_remove = []
         for i in range(len(pos_moves)):
             if pos_moves[i][0] not in RulesEnforcer.pos_letters or pos_moves[i][1] not in RulesEnforcer.pos_nums:
@@ -155,7 +161,7 @@ class RulesEnforcer(object):
     def coordinate_mapper(mycoordinate):
         """takes as input a chess coordinate and maps it to the coordinate in the array
         
-        input: chess coordinate
+        input: chess coordinate (ie a5)
         output: coordinate of the array to be used in the chessboard
         
         """
@@ -165,6 +171,27 @@ class RulesEnforcer(object):
         startver  = 7 - (int(mycoordinate[1]) - 1)
         
         return [startver, starthor]
+
+    @staticmethod
+    def coordinate_mapper_reverse(myarray):
+        """
+        Does the opposite of coordinate_mapper().  Takes as input array coordinates (ie. [0,5])
+
+        This method is useful if you 
+        
+        input: a length 2 list of array coordinates
+        output: chess coordinate (str)
+
+        example:
+        [7,0] -> a1
+        """
+
+        #letter of cor
+        first_cor  = RulesEnforcer.letter_dict_rev[myarray[1]]
+        #number of cor
+        second_cor = 8 - myarray[0] 
+        
+        return str(first_cor) + str(second_cor)
         
     
     @staticmethod
