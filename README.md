@@ -1,4 +1,4 @@
-#Grandmaster Level Chess AI
+# Grandmaster Level Chess AI
 
 This is a chess AI and chess game built using python. 
 
