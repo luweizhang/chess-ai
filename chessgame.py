@@ -209,6 +209,6 @@ class ChessGame(RulesEnforcer,ChessAi):
         return chessboard
     
     def current_position_score(self):
-        return position_evaluator(self.chessboard)
+        return self.position_evaluator(self.chessboard)
 
 
