@@ -30,13 +30,18 @@ class RulesEnforcer(object):
         
         """
 
+        #if the coordinate is an array 
+        if type(coordinate) == list:
+            coordinate = coordinate_mapper_reverse(coordinate)
+
         #break out coordinate into a list of len(2)
         cords = list(coordinate)
         cords[1] = int(cords[1])
 
         #pawns
         if piece == 'p':
-            pos_moves = pieces.Pawn.moves(cords, color, chessboard)    
+            pos_moves = pieces.Pawn.moves(cords, color, chessboard)  
+
         #rook
         elif piece == 'r':
             pos_moves = pieces.Rook.moves(cords, color, chessboard)
@@ -77,19 +82,14 @@ class RulesEnforcer(object):
         #dict for storing all the moves
         all_moves = defaultdict()
 
-
-
-        for row in chessboard:
-            for square in row:
+        for cor1, row in enumerate(chessboard):
+            for cor2, square in enumerate(row):
                 if square.split('-')[0] == color:
-
                     piece = square.split('-')[1]
-                    RulesEnforcer.possible_moves(chessboard, color, piece, coordinate)
+                    coordinate = [cor1, cor2]
+                    all_moves[coordinate_mapper_reverse(coorindate)] = RulesEnforcer.possible_moves(chessboard, color, piece, coordinate)
 
-
-
-
-
+        return all_moves
 
     @staticmethod
     def remove_outofbound_moves(pos_moves):
@@ -185,7 +185,6 @@ class RulesEnforcer(object):
         example:
         [7,0] -> a1
         """
-
         #letter of cor
         first_cor  = RulesEnforcer.letter_dict_rev[myarray[1]]
         #number of cor
