@@ -91,9 +91,8 @@ class ChessGame(RulesEnforcer,ChessAi):
 
     
     def whose_turn(self):
-        print(self.current_turn + " to move")
-        return self.current_turn + " to move"
-
+        #print(self.current_turn + " to move")
+        return self.current_turn
 
     def make_move(self, start, finish):
         """
@@ -104,7 +103,7 @@ class ChessGame(RulesEnforcer,ChessAi):
         ending coordinate: example "e5"
         
         output:
-        "Move success" or "Move invalid"
+        "Move success" or "Move invalid", self.chessboard is updated with the move made
         
         Uses the RulesEnforcer() to make sure that the move is valid
         
@@ -171,6 +170,7 @@ class ChessGame(RulesEnforcer,ChessAi):
         input:
         starting coordinate: example "e4"
         ending coordinate: example "e5"
+        chessboard: chessboard that you want to move
         
         output:
         "Move success" or "Move invalid"

@@ -103,11 +103,28 @@ class ChessAi(object):
         For the first iteration, just calculate three moves into the fiture
 
         """
-        
-        self.gametree = TreeNode(self.chessboard)
 
-        #returns a list of possible chess positions, and the actual move itself
-        pos_moves = possible_moves(gametree.data)
+        #first, lets try to look one move into the future. 
+        
+        #put the current state into the parent node of the chessboard. 
+        self.current_game_state = TreeNode(self.chessboard)
+
+        #returns a dictionary of possible chess moves
+        pos_moves = RulesEnforcer.all_possible_moves(current_game_state.data)
+
+        #now we need to generate all possible moves in the future...
+        #we will do this by iterating through the dictionary
+        for key, val in pos_moves:
+
+            start = key
+            finish = val
+
+            ChessGame.make_hypothetical_move(start, finish, current_game_state.data)
+
+
+
+
+
         
         #run the heuristic algorithm on the list of possible moves you can make to narrow down your search space.  
         #hmm...the problem with this is that unless the heuristic algorithm is very good

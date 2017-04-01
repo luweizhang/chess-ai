@@ -32,7 +32,7 @@ class RulesEnforcer(object):
 
         #if the coordinate is an array 
         if type(coordinate) == list:
-            coordinate = coordinate_mapper_reverse(coordinate)
+            coordinate = RulesEnforcer.coordinate_mapper_reverse(coordinate)
 
         #break out coordinate into a list of len(2)
         cords = list(coordinate)
@@ -87,7 +87,11 @@ class RulesEnforcer(object):
                 if square.split('-')[0] == color:
                     piece = square.split('-')[1]
                     coordinate = [cor1, cor2]
-                    all_moves[coordinate_mapper_reverse(coorindate)] = RulesEnforcer.possible_moves(chessboard, color, piece, coordinate)
+                    
+                    moves = RulesEnforcer.possible_moves(chessboard, color, piece, coordinate)
+                    
+                    if moves:
+                        all_moves[RulesEnforcer.coordinate_mapper_reverse(coordinate)] = RulesEnforcer.possible_moves(chessboard, color, piece, coordinate)
 
         return all_moves
 
