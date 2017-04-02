@@ -23,9 +23,12 @@ class ChessAi(object):
     #set the value of each of the pieces to be used in the hard coded heuristic algorithm
     piece_values = {'p':1,'r':5,'n':3,'b':3,'q':9,'k':99}
     
-    def __init__(self, ai_depth = 1):
+    def __init__(self, ai_depth = 3):
         """
-        input: ai_diff is the difficulty level of the ai (integer from 1 to 10)
+        input: ai_depth is amount of moves to search into the future.
+
+        in the future, we can try to add different parameter constrains 
+        # such as time limit, cpu compute speed.
         """
         self.depth = ai_depth
         self.current_game_state = None
@@ -92,7 +95,7 @@ class ChessAi(object):
         Brute force tree generation.  Generates all possible moves (will probably need to add pruning later) 
         
         input: current chess position (8 x 8 2d array)
-        output: a large tree of chess position
+        output: returns nothing but sets the current game state at self.current_game_state
         
         My Notes:
         We should be able to use the position_evaluator to prune and make the tree generation smarter...
@@ -109,25 +112,44 @@ class ChessAi(object):
         or taking up too much CPU power.
         I guess after the second move, I don't really need to store the position in the tree, I can just store the score...
         
-        For the first iteration, just calculate three moves into the fiture
+        For the first iteration, just calculate three moves into the future
 
         """
 
         #first, lets try to look one move into the future.  Then we will expand the AI to look more moves into the future 
 
-        #put the current state into the parent node of the chessboard. 
+        #initialize the tree by putting the current state into the parent node of the chessboard. 
         self.current_game_state = TreeNode(copy.deepcopy(self.chessboard))
+        current_positions = [self.current_game_state]
 
-        #returns a dictionary of possible chess moves
-        pos_moves = RulesEnforcer.all_possible_moves(self.current_game_state.data, self.current_turn)
+        #track the number of moves into the future you are calculating.
+        current_depth = 1
+        current_turn = copy.deepcopy(self.current_turn)
 
-        #now we need to generate all possible moves in the future...
-        #we will do this by iterating through the pos moves dictionary
-        for start, moves in pos_moves.items():
-            for move in moves:
-                current_pos = self.current_game_state.data
-                new_pos = ChessAi.make_hypothetical_move(start, move, current_pos)
-                self.current_game_state.add_child(new_pos)
+        #keep searching until the desired AI depth has been reached. 
+        while current_depth <= self.depth:
+            for position in current_positions:
+                #returns a dictionary of possible chess moves
+                pos_moves = RulesEnforcer.all_possible_moves(position.data, self.current_turn)
+
+                #now we need to generate all possible moves in the future...
+                #we will do this by iterating through the pos moves dictionary
+                for start, moves in pos_moves.items():
+                    for move in moves:
+                        current_pos = position.data
+                        new_pos = ChessAi.make_hypothetical_move(start, move, current_pos)
+                        position.add_child(new_pos)
+
+            current_depth += 1
+
+            #now, populate the new current positions list
+            new_positions = []
+
+            for position in current_positions:
+                new_positions += position.children
+
+            current_positions = new_positions
+
 
 
         #run the heuristic algorithm on the list of possible moves you can make to narrow down your search space.  
@@ -146,10 +168,10 @@ class ChessAi(object):
             pos_score = pos_evaluated[i]
             move = pos_moves[i] 
             mytree.add_child([pos_score, move])
-        """        
+        """       
         
 
-    def minimax(self):
+    def minimax(self, starting_node):
         """Minimax algorithm to find the best moves at each layer of the tree
         
         Takes as input a tree of moves and uses minimax to find the best within in that tree.  

@@ -7,7 +7,7 @@ from ai import ChessAi
 
 
 class ChessGame(RulesEnforcer,ChessAi):
-    def __init__(self):
+    def __init__(self, ai_depth):
         """
         Creates a chessboard with pieces
         
@@ -35,9 +35,9 @@ class ChessGame(RulesEnforcer,ChessAi):
 
         """
         
-        #ChessAi.__init__(self)
-        #RulesEnforcer.__init__(self)
-        super(ChessGame, self).__init__()
+        ChessAi.__init__(self, 3)
+        RulesEnforcer.__init__(self)
+        #super(ChessGame, self).__init__()
         
         #initialize the chessboard
         self.chessboard = [["0-0"]*8 for i in range(8)]
