@@ -85,8 +85,12 @@ class ChessAi(object):
                 if piece == 'n' and color == 'b':
                     final_position_score -= math.pow(1 + (y)*.1, 2)
                     
+
+                #ideas for more heuristics / features    
+                #score penalty for knights that are on the edge of the screen
                 #score adjustment for bishops with open diagonals
-                #score adjustment for castled king                
+                #score adjustment for castled king
+
         return round(final_position_score, 4)
        
 
@@ -119,36 +123,47 @@ class ChessAi(object):
         #first, lets try to look one move into the future.  Then we will expand the AI to look more moves into the future 
 
         #initialize the tree by putting the current state into the parent node of the chessboard. 
-        self.current_game_state = TreeNode(copy.deepcopy(self.chessboard))
+        self.current_game_state = TreeNode([copy.deepcopy(self.chessboard),0])
         current_positions = [self.current_game_state]
 
         #track the number of moves into the future you are calculating.
         current_depth = 1
+
+        #get the current turn
         current_turn = copy.deepcopy(self.current_turn)
 
         #keep searching until the desired AI depth has been reached. 
         while current_depth <= self.depth:
             for position in current_positions:
                 #returns a dictionary of possible chess moves
-                pos_moves = RulesEnforcer.all_possible_moves(position.data, self.current_turn)
+                pos_moves = RulesEnforcer.all_possible_moves(position.data[0], current_turn)
 
                 #now we need to generate all possible moves in the future...
                 #we will do this by iterating through the pos moves dictionary
                 for start, moves in pos_moves.items():
                     for move in moves:
-                        current_pos = position.data
+                        current_pos = position.data[0]
                         new_pos = ChessAi.make_hypothetical_move(start, move, current_pos)
-                        position.add_child(new_pos)
+                        
+                        #so here, after one move into the future,
+                        #we actually don't need to store the chess positions
+                        #but just the position score
+                        score = ChessAi.position_evaluator(new_pos)
+                        position.add_child([new_pos, score])
 
             current_depth += 1
 
             #now, populate the new current positions list
             new_positions = []
-
             for position in current_positions:
                 new_positions += position.children
-
             current_positions = new_positions
+
+            #now, switch the turn
+            if current_turn == 'w':
+                current_turn = 'b' 
+            else:
+                current_turn = 'w' 
 
 
 
@@ -179,7 +194,7 @@ class ChessAi(object):
         
         Basically start at the leaf nodes of the tree and backwards compute back to the original
         
-        input: a tree of possible moves (created by the tree generator function)
+        input: root node of the possible move tree (created by the tree generator function)
         output: the best move to make at the current state (str)
         
         """

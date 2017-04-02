@@ -12,7 +12,7 @@ class ChessGame(RulesEnforcer,ChessAi):
         Creates a chessboard with pieces
         
         params:
-        chess_ai_diff: difficulty of the chess_ai
+        ai_depth: max number of moves to search into the future
         
         Notation:
         ------------
@@ -35,7 +35,7 @@ class ChessGame(RulesEnforcer,ChessAi):
 
         """
         
-        ChessAi.__init__(self, 3)
+        ChessAi.__init__(self, ai_depth)
         RulesEnforcer.__init__(self)
         #super(ChessGame, self).__init__()
         
