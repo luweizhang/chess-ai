@@ -1,10 +1,10 @@
 """chess ai"""
 import math
 import itertools
+import copy
 
 #import from parent directory
 from game import RulesEnforcer
-import ChessGame
 
 class TreeNode(object):
     """Tree data structure for storing possible chess positions"""
@@ -13,7 +13,11 @@ class TreeNode(object):
         self.children = []
         
     def add_child(self, data):
-        self.children.append(child)
+        self.children.append(TreeNode(data))
+
+    def see_children(self):
+        for i in self.children:
+            print i.data
 
 class ChessAi(object):
     #set the value of each of the pieces to be used in the hard coded heuristic algorithm
@@ -112,17 +116,18 @@ class ChessAi(object):
         #first, lets try to look one move into the future.  Then we will expand the AI to look more moves into the future 
 
         #put the current state into the parent node of the chessboard. 
-        self.current_game_state = TreeNode(self.chessboard)
+        self.current_game_state = TreeNode(copy.deepcopy(self.chessboard))
 
         #returns a dictionary of possible chess moves
         pos_moves = RulesEnforcer.all_possible_moves(self.current_game_state.data, self.current_turn)
 
         #now we need to generate all possible moves in the future...
         #we will do this by iterating through the pos moves dictionary
-        for start, moves in pos_moves:
+        for start, moves in pos_moves.items():
             for move in moves:
-                new_pos = ChessGame.make_hypothetical_move(start, move, self.current_game_state.data)
-                self.current_game_state.add_child(TreeNode(new_pos))
+                current_pos = self.current_game_state.data
+                new_pos = ChessAi.make_hypothetical_move(start, move, current_pos)
+                self.current_game_state.add_child(new_pos)
 
 
         #run the heuristic algorithm on the list of possible moves you can make to narrow down your search space.  
@@ -178,6 +183,8 @@ class ChessAi(object):
         Uses the RulesEnforcer() to make sure that the move is valid
         
         """
+        #deepcopy the chessboard so that it does not affect the original
+        mychessboard = copy.deepcopy(chessboard[:])
         
         #map start and finish to gameboard coordinates
         start  = RulesEnforcer.coordinate_mapper(start)
@@ -191,22 +198,22 @@ class ChessAi(object):
         finish_cor1 = finish[1]
         
         #check if destination is white, black or empty
-        start_color = chessboard[start_cor0][start_cor1].split('-')[0]
-        start_piece = chessboard[start_cor0][start_cor1].split('-')[1]
+        start_color = mychessboard[start_cor0][start_cor1].split('-')[0]
+        start_piece = mychessboard[start_cor0][start_cor1].split('-')[1]
         
         #check if destination is white, black or empty
-        destination_color = chessboard[finish_cor0][finish_cor1].split('-')[0]
-        destination_piece = chessboard[finish_cor0][finish_cor1].split('-')[1]
+        destination_color = mychessboard[finish_cor0][finish_cor1].split('-')[0]
+        destination_piece = mychessboard[finish_cor0][finish_cor1].split('-')[1]
         
         #cannot move if starting square is empty
         if start_color == '0':
             return "Starting square is empty!"
         
-        mypiece = chessboard[start_cor0][start_cor1]
-        chessboard[start_cor0][start_cor1] = '0-0'
-        chessboard[finish_cor0][finish_cor1] = mypiece
+        mypiece = mychessboard[start_cor0][start_cor1]
+        mychessboard[start_cor0][start_cor1] = '0-0'
+        mychessboard[finish_cor0][finish_cor1] = mypiece
         
-        return chessboard
+        return mychessboard
 
 
    

@@ -162,55 +162,7 @@ class ChessGame(RulesEnforcer,ChessAi):
         
         return self.chessboard
 
-    @staticmethod
-    def make_hypothetical_move(start, finish, chessboard):
-        """
-        Make a hypothetical move, this will be used to generate the possibilities to be
-        stored in the chess tree
 
-        This method has a ton of redundant code with the make_move() method 
-        so I should probably 
-        
-        input:
-        starting coordinate: example "e4"
-        ending coordinate: example "e5"
-        chessboard: chessboard that you want to move
-        
-        output:
-        "Move success" or "Move invalid"
-        
-        Uses the RulesEnforcer() to make sure that the move is valid
-        
-        """
-        
-        #map start and finish to gameboard coordinates
-        start  = RulesEnforcer.coordinate_mapper(start)
-        finish = RulesEnforcer.coordinate_mapper(finish)
-        
-        #need to move alot of this logic to the rules enforcer
-        start_cor0  = start[0]
-        start_cor1  = start[1]
-        
-        finish_cor0 = finish[0]
-        finish_cor1 = finish[1]
-        
-        #check if destination is white, black or empty
-        start_color = chessboard[start_cor0][start_cor1].split('-')[0]
-        start_piece = chessboard[start_cor0][start_cor1].split('-')[1]
-        
-        #check if destination is white, black or empty
-        destination_color = chessboard[finish_cor0][finish_cor1].split('-')[0]
-        destination_piece = chessboard[finish_cor0][finish_cor1].split('-')[1]
-        
-        #cannot move if starting square is empty
-        if start_color == '0':
-            return "Starting square is empty!"
-        
-        mypiece = chessboard[start_cor0][start_cor1]
-        chessboard[start_cor0][start_cor1] = '0-0'
-        chessboard[finish_cor0][finish_cor1] = mypiece
-        
-        return chessboard
     
     def current_position_score(self):
         """
