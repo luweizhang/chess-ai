@@ -2,6 +2,10 @@
 import math
 import itertools
 
+#import from parent directory
+from game import RulesEnforcer
+import ChessGame
+
 class TreeNode(object):
     """Tree data structure for storing possible chess positions"""
     def __init__(self, data, parent=None):
@@ -20,6 +24,7 @@ class ChessAi(object):
         input: ai_diff is the difficulty level of the ai (integer from 1 to 10)
         """
         self.depth = ai_depth
+        self.current_game_state = None
     
     @staticmethod
     def position_evaluator(chess_position):
@@ -104,32 +109,28 @@ class ChessAi(object):
 
         """
 
-        #first, lets try to look one move into the future. 
-        
+        #first, lets try to look one move into the future.  Then we will expand the AI to look more moves into the future 
+
         #put the current state into the parent node of the chessboard. 
         self.current_game_state = TreeNode(self.chessboard)
 
         #returns a dictionary of possible chess moves
-        pos_moves = RulesEnforcer.all_possible_moves(current_game_state.data)
+        pos_moves = RulesEnforcer.all_possible_moves(self.current_game_state.data, self.current_turn)
 
         #now we need to generate all possible moves in the future...
-        #we will do this by iterating through the dictionary
-        for key, val in pos_moves:
-
-            start = key
-            finish = val
-
-            ChessGame.make_hypothetical_move(start, finish, current_game_state.data)
+        #we will do this by iterating through the pos moves dictionary
+        for start, moves in pos_moves:
+            for move in moves:
+                new_pos = ChessGame.make_hypothetical_move(start, move, self.current_game_state.data)
+                self.current_game_state.add_child(TreeNode(new_pos))
 
 
-
-
-
-        
         #run the heuristic algorithm on the list of possible moves you can make to narrow down your search space.  
         #hmm...the problem with this is that unless the heuristic algorithm is very good
         #you might miss out on really good moves such as a queen sacrifice...I'm not sure what to do here...
         #pos_evaluated is an array of ints representing the quality of the moves e.g. [3,4,5,6,4]
+        
+        """
         pos_evaluated = []
         for i in pos_moves:
             pos_evaluated.append(position_evaluator(i))
@@ -139,9 +140,10 @@ class ChessAi(object):
         for i in range(num_iter):
             pos_score = pos_evaluated[i]
             move = pos_moves[i] 
-            mytree.add_child([pos_score, move])        
+            mytree.add_child([pos_score, move])
+        """        
         
-    
+
     def minimax(self):
         """Minimax algorithm to find the best moves at each layer of the tree
         
@@ -155,6 +157,56 @@ class ChessAi(object):
         
         """
         pass
+
+    @staticmethod
+    def make_hypothetical_move(start, finish, chessboard):
+        """
+        Make a hypothetical move, this will be used to generate the possibilities to be
+        stored in the chess tree
+
+        This method has a ton of redundant code with the make_move() method 
+        so I should probably 
+        
+        input:
+        starting coordinate: example "e4"
+        ending coordinate: example "e5"
+        chessboard: chessboard that you want to move
+        
+        output:
+        "Move success" or "Move invalid"
+        
+        Uses the RulesEnforcer() to make sure that the move is valid
+        
+        """
+        
+        #map start and finish to gameboard coordinates
+        start  = RulesEnforcer.coordinate_mapper(start)
+        finish = RulesEnforcer.coordinate_mapper(finish)
+        
+        #need to move alot of this logic to the rules enforcer
+        start_cor0  = start[0]
+        start_cor1  = start[1]
+        
+        finish_cor0 = finish[0]
+        finish_cor1 = finish[1]
+        
+        #check if destination is white, black or empty
+        start_color = chessboard[start_cor0][start_cor1].split('-')[0]
+        start_piece = chessboard[start_cor0][start_cor1].split('-')[1]
+        
+        #check if destination is white, black or empty
+        destination_color = chessboard[finish_cor0][finish_cor1].split('-')[0]
+        destination_piece = chessboard[finish_cor0][finish_cor1].split('-')[1]
+        
+        #cannot move if starting square is empty
+        if start_color == '0':
+            return "Starting square is empty!"
+        
+        mypiece = chessboard[start_cor0][start_cor1]
+        chessboard[start_cor0][start_cor1] = '0-0'
+        chessboard[finish_cor0][finish_cor1] = mypiece
+        
+        return chessboard
 
 
    

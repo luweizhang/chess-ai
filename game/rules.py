@@ -65,6 +65,7 @@ class RulesEnforcer(object):
         else:                 
             return "invalid inputs!"
             
+
         return pos_moves
 
     @staticmethod
@@ -89,9 +90,9 @@ class RulesEnforcer(object):
                     coordinate = [cor1, cor2]
                     
                     moves = RulesEnforcer.possible_moves(chessboard, color, piece, coordinate)
-                    
+
                     if moves:
-                        all_moves[RulesEnforcer.coordinate_mapper_reverse(coordinate)] = RulesEnforcer.possible_moves(chessboard, color, piece, coordinate)
+                        all_moves[RulesEnforcer.coordinate_mapper_reverse(coordinate)] = moves
 
         return all_moves
 
@@ -170,7 +171,7 @@ class RulesEnforcer(object):
         
         """
         mycoordinate  = list(mycoordinate)
-        
+
         starthor  = RulesEnforcer.letter_dict[mycoordinate[0]]
         startver  = 7 - (int(mycoordinate[1]) - 1)
         

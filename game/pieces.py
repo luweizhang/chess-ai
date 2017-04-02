@@ -6,7 +6,6 @@ Movement behavior for each of the different pieces.
 
 """
 
-
 class Pawn(object):
     """Movement behavior for this piece
     Note that the pawn is able to take pieces that are across from it, so we will need to scan 

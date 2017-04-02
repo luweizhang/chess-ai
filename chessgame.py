@@ -5,6 +5,7 @@ import itertools
 from game import RulesEnforcer
 from ai import ChessAi
 
+
 class ChessGame(RulesEnforcer,ChessAi):
     def __init__(self):
         """
@@ -166,6 +167,9 @@ class ChessGame(RulesEnforcer,ChessAi):
         """
         Make a hypothetical move, this will be used to generate the possibilities to be
         stored in the chess tree
+
+        This method has a ton of redundant code with the make_move() method 
+        so I should probably 
         
         input:
         starting coordinate: example "e4"
@@ -209,6 +213,9 @@ class ChessGame(RulesEnforcer,ChessAi):
         return chessboard
     
     def current_position_score(self):
+        """
+        Get the position score of the current game being played
+        """
         return self.position_evaluator(self.chessboard)
 
 
