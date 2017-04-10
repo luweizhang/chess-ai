@@ -6,6 +6,13 @@ import copy
 #import from parent directory
 from game import RulesEnforcer
 
+
+"""
+Contains the method necessary for the Chess AI to work
+
+"""
+
+
 class TreeNode(object):
     """Tree data structure for storing possible chess positions
 
@@ -222,8 +229,7 @@ class ChessAi(object):
                 if depth == 0:
                     return [node.children[scores.index(max(scores))].data, max(scores)]
                 else:
-                    return max(scores)
-                    
+                    return max(scores)          
             #if its the opponents turn, do min
             else:
                 return min(scores)

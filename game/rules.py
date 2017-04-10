@@ -190,6 +190,7 @@ class RulesEnforcer(object):
         example:
         [7,0] -> a1
         """
+
         #letter of cor
         first_cor  = RulesEnforcer.letter_dict_rev[myarray[1]]
         #number of cor
