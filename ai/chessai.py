@@ -153,7 +153,11 @@ class ChessAi(object):
                         #we actually don't need to store the chess positions
                         #but just the position score
                         score = ChessAi.position_evaluator(new_pos)
-                        position.add_child([new_pos, score])
+
+                        if current_depth > 1:
+                            position.add_child([new_pos, score])
+                        else:
+                            position.add_child([new_pos, score, start, move])
 
             current_depth += 1
 
@@ -196,7 +200,8 @@ class ChessAi(object):
         Takes as input a tree of moves and uses minimax to find the best within in that tree.  
         Will use the heuristic algorithm to evaluate the chess moves.   
         
-        Basically start at the leaf nodes of the tree and backwards compute back to the original
+        Basically, use recursion to get to the leaf note of th tree
+        Then use the minimax algorithm to backwards compute back to the original value.
         
         input: root/starting node of the possible move tree (created by the tree generator function)
         output: the best move to make at the current state (str)
@@ -214,11 +219,13 @@ class ChessAi(object):
                 scores.append(self.minimax(child, depth + 1))
             #if its your turn, do max
             if depth % 2 == 0:
-                print(scores)
-                return max(scores)
+                if depth == 0:
+                    return [node.children[scores.index(max(scores))].data, max(scores)]
+                else:
+                    return max(scores)
+                    
             #if its the opponents turn, do min
             else:
-                print(scores)
                 return min(scores)
 
         else:
@@ -228,15 +235,11 @@ class ChessAi(object):
 
             #if its your turn, do max
             if depth % 2 == 0:
-                print(scores)
                 return max(scores)
             #if its the opponents turn, do min
             else:
-                print(scores)
                 return min(scores)
 
-
-        
 
     @staticmethod
     def make_hypothetical_move(start, finish, chessboard):
