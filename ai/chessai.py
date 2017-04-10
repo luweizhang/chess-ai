@@ -162,7 +162,7 @@ class ChessAi(object):
             for position in current_positions:
                 new_positions += position.children
             current_positions = new_positions
-s
+
             #now, switch the turn
             if current_turn == 'w':
                 current_turn = 'b' 
@@ -190,7 +190,7 @@ s
         """       
         
 
-    def minimax(self, starting_node, depth = 0):
+    def minimax(self, node, depth = 0):
         """Minimax algorithm to find the best moves at each layer of the tree
         
         Takes as input a tree of moves and uses minimax to find the best within in that tree.  
@@ -198,7 +198,7 @@ s
         
         Basically start at the leaf nodes of the tree and backwards compute back to the original
         
-        input: root node of the possible move tree (created by the tree generator function)
+        input: root/starting node of the possible move tree (created by the tree generator function)
         output: the best move to make at the current state (str)
         """
 
@@ -206,7 +206,6 @@ s
         #opponent wants to minimize the score.
 
         #current_turn = copy.copy(self.current_turn)
-        node = starting_node
         scores = []
 
         #if children of children exist, that means you need to go one level deeper
@@ -215,22 +214,25 @@ s
                 scores.append(self.minimax(child, depth + 1))
             #if its your turn, do max
             if depth % 2 == 0:
+                print(scores)
                 return max(scores)
             #if its the opponents turn, do min
             else:
+                print(scores)
                 return min(scores)
 
         else:
             #if no children of children exist, then it is time to apply the minimax algorithm
-            scores = []
             for child in node.children:
                 scores.append(child.data[1])
 
             #if its your turn, do max
             if depth % 2 == 0:
+                print(scores)
                 return max(scores)
             #if its the opponents turn, do min
             else:
+                print(scores)
                 return min(scores)
 
 
