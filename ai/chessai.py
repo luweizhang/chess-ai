@@ -7,7 +7,11 @@ import copy
 from game import RulesEnforcer
 
 class TreeNode(object):
-    """Tree data structure for storing possible chess positions"""
+    """Tree data structure for storing possible chess positions
+
+    self.data:
+        len 2 array that contains the chess position and the evaluation score.
+    """
     def __init__(self, data, parent=None):
         self.data = data
         self.children = []
@@ -186,7 +190,7 @@ s
         """       
         
 
-    def minimax(self, starting_node):
+    def minimax(self, starting_node, depth = 0):
         """Minimax algorithm to find the best moves at each layer of the tree
         
         Takes as input a tree of moves and uses minimax to find the best within in that tree.  
@@ -196,36 +200,40 @@ s
         
         input: root node of the possible move tree (created by the tree generator function)
         output: the best move to make at the current state (str)
-        
         """
-        current_turn = copy.copy(self.current_turn)
 
-        """
-        return score(game) if game.over?
-        depth += 1
-        scores = [] # an array of scores
-        moves = []  # an array of moves
+        #current player wants to maximize the score.
+        #opponent wants to minimize the score.
 
-        # Populate the scores array, recursing as needed
-        game.get_available_moves.each do |move|
-            possible_game = game.get_new_state(move)
-            scores.push minimax(possible_game, depth)
-            moves.push move
-        end
+        #current_turn = copy.copy(self.current_turn)
+        node = starting_node
+        scores = []
 
-        # Do the min or the max calculation
-        if game.active_turn == @player
-            # This is the max calculation
-            max_score_index = scores.each_with_index.max[1]
-            @choice = moves[max_score_index]
-            return scores[max_score_index]
-        else
-            # This is the min calculation
-            min_score_index = scores.each_with_index.min[1]
-            @choice = moves[min_score_index]
-            return scores[min_score_index]
-        end
-        """
+        #if children of children exist, that means you need to go one level deeper
+        if node.children[0].children:
+            for child in node.children:
+                scores.append(self.minimax(child, depth + 1))
+            #if its your turn, do max
+            if depth % 2 == 0:
+                return max(scores)
+            #if its the opponents turn, do min
+            else:
+                return min(scores)
+
+        else:
+            #if no children of children exist, then it is time to apply the minimax algorithm
+            scores = []
+            for child in node.children:
+                scores.append(child.data[1])
+
+            #if its your turn, do max
+            if depth % 2 == 0:
+                return max(scores)
+            #if its the opponents turn, do min
+            else:
+                return min(scores)
+
+
         
 
     @staticmethod
