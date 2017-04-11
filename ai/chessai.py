@@ -229,7 +229,13 @@ class ChessAi(object):
             #if its your turn, do max
             if depth % 2 == 0:
                 if depth == 0:
-                    return [node.children[scores.index(max(scores))].data, max(scores)]
+                    if self.current_turn == 'w':
+                        return node.children[scores.index(max(scores))].data + [max(scores)]
+                    elif self.current_turn == 'b':
+                        myresult = node.children[scores.index(max(scores))].data
+                        myresult[1] = -myresult[1]
+                        return myresult + [-max(scores)]
+
                 else:
                     return max(scores)          
             #if its the opponents turn, do min
