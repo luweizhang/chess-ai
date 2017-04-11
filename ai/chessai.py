@@ -86,15 +86,15 @@ class ChessAi(object):
 
                 #score adjustment for forward pawn (plus .1 for each square that the pawn is advanced)
                 if piece == 'p' and color == 'w':
-                    final_position_score += (8 - y - 2)*.1 
+                    final_position_score += (8 - x - 2)*.02 
                 if piece == 'p' and color == 'b':
-                    final_position_score -= (y - 1)*.1 
+                    final_position_score -= (x - 1)*.02
                     
                 #score adjustment for developed knights (plus .1 for each square that the knight is advanced)
                 if piece == 'n' and color == 'w':
-                    final_position_score += math.pow(1 + (8 - y - 1)*.1, 2)
+                    final_position_score += math.pow(1 + (8 - x - 1)*.05, 2)
                 if piece == 'n' and color == 'b':
-                    final_position_score -= math.pow(1 + (y)*.1, 2)
+                    final_position_score -= math.pow(1 + (x)*.05, 2)
                     
 
                 #ideas for more heuristics / features    
@@ -156,10 +156,12 @@ class ChessAi(object):
                         current_pos = position.data[0]
                         new_pos = ChessAi.make_hypothetical_move(start, move, current_pos)
                         
-                        #so here, after one move into the future,
-                        #we actually don't need to store the chess positions
-                        #but just the position score
-                        score = ChessAi.position_evaluator(new_pos)
+
+                        if current_turn == 'w':
+                            score = ChessAi.position_evaluator(new_pos)
+                        else:
+                            #if black, store the negative score because black wants to play the best move
+                            score = -ChessAi.position_evaluator(new_pos)
 
                         if current_depth > 1:
                             position.add_child([new_pos, score])

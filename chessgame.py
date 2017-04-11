@@ -96,15 +96,21 @@ class ChessGame(RulesEnforcer,ChessAi):
         return self.current_turn
 
     
-    def ai_recommend_move(self):
+    def recommend_move(self):
         """
         Use the AI to make a move (will not actually make the move)
         """
+        self.tree_generator()
+        return self.minimax(self.current_game_state, 0)
 
     def make_move_ai(self):
         """
         Let the AI make the move
         """
+        myoutput = self.recommend_move()
+
+
+
 
 
     def make_move(self, start, finish):
