@@ -19,9 +19,14 @@ class RulesEnforcer(object):
     
 
     @staticmethod
-    def check_square(chessboard):
-        pass
+    def check_square(chessboard, coordinate):
+        """
+        Takes as input a chess board and coordinate and outputs
+        what is inside that space
 
+        This is useful for a variable of purposes
+        """
+        pass
 
 
     @staticmethod
