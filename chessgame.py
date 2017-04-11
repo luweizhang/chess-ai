@@ -98,7 +98,7 @@ class ChessGame(RulesEnforcer,ChessAi):
     
     def recommend_move(self):
         """
-        Use the AI to make a move (will not actually make the move)
+        Use the AI to recommend a move (will not actually make the move)
         """
         self.tree_generator()
         return self.minimax(self.current_game_state, 0)
@@ -108,9 +108,10 @@ class ChessGame(RulesEnforcer,ChessAi):
         Let the AI make the move
         """
         myoutput = self.recommend_move()
-
-
-
+        start = myoutput[2]
+        finish = myoutput[3]
+        self.make_move(start, finish)
+        return self.chessboard
 
 
     def make_move(self, start, finish):
