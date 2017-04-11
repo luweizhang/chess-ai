@@ -30,16 +30,46 @@ class Pawn(object):
                 pos_moves = [[cords[0], int(cords[1]) - 1]]
 
         #check adjacent diagonals for piece taking opportunities
-        
-        """
         if chessboard:
             board_cords = RulesEnforcer.coordinate_mapper(cords)
             if color == 'w':
+                #check diagonal left
+                if board_cords[1] > 0:
+                    board_cords[0] -= 1
+                    board_cords[1] -= 1
+                    square = chessboard[board_cords[0]][board_cords[1]]
+                    if square.split('-')[0] == 'b':
+                        final_cord = RulesEnforcer.coordinate_mapper_reverse(board_cords)
+                        pos_moves.append([list(final_cord)])
+
+                #check diagonal right
+                if board_cords[1] < 7:
+                    board_cords[0] -= 1
+                    board_cords[1] += 1
+                    square = chessboard[board_cords[0]][board_cords[1]]
+                    if square.split('-')[0] == 'b':
+                        final_cord = RulesEnforcer.coordinate_mapper_reverse(board_cords)
+                        pos_moves.append([list(final_cord)])
+
                 
             if color == 'b':
-        """
+                #check diagonal left
+                if board_cords[1] > 0:
+                    board_cords[0] += 1
+                    board_cords[1] -= 1
+                    square = chessboard[board_cords[0]][board_cords[1]]
+                    if square.split('-')[0] == 'w':
+                        final_cord = RulesEnforcer.coordinate_mapper_reverse(board_cords)
+                        pos_moves.append([list(final_cord)])
 
-
+                #check diagonal right
+                if board_cords[1] < 7:
+                    board_cords[0] += 1
+                    board_cords[1] += 1
+                    square = chessboard[board_cords[0]][board_cords[1]]
+                    if square.split('-')[0] == 'w':
+                        final_cord = RulesEnforcer.coordinate_mapper_reverse(board_cords)
+                        pos_moves.append([list(final_cord)])
 
         pos_moves = RulesEnforcer.remove_outofbound_moves(pos_moves)
         return pos_moves

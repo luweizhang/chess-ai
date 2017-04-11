@@ -26,7 +26,12 @@ class RulesEnforcer(object):
 
         This is useful for a variable of purposes
         """
-        pass
+        mycord = RulesEnforcer.coordinate_mapper(coordinate)
+
+        first = mycord[0]
+        second = mycord[1]
+
+        return chessboard[first][second]
 
 
     @staticmethod
