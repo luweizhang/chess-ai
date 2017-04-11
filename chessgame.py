@@ -110,7 +110,11 @@ class ChessGame(RulesEnforcer,ChessAi):
         myoutput = self.recommend_move()
         start = myoutput[2]
         finish = myoutput[3]
+
         self.make_move(start, finish)
+        print(start)
+        print(finish)
+        
         return self.chessboard
 
 

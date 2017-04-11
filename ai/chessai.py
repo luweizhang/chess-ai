@@ -6,12 +6,10 @@ import copy
 #import from parent directory
 from game import RulesEnforcer
 
-
 """
 Contains the method necessary for the Chess AI to work
 
 """
-
 
 class TreeNode(object):
     """Tree data structure for storing possible chess positions

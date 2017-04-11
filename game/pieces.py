@@ -3,11 +3,11 @@ from rules import RulesEnforcer
 
 """
 Movement behavior for each of the different pieces.
-
 """
 
 class Pawn(object):
-    """Movement behavior for this piece
+    """
+    Movement behavior for this piece
     Note that the pawn is able to take pieces that are across from it, so we will need to scan 
     the board for diagonally adjacent pieces to identify piece taking opportunities
     """
@@ -15,11 +15,11 @@ class Pawn(object):
     def moves(cords, color, chessboard = None):
         """
         takes as input the coordinate and color of the piece, outputs the possible moves
-
         Pawns can attack adjacent diagonals
         """
         if color == 'w':
             if int(cords[1]) == 2:
+                #if the pawn is at the starting position then it can move either one or two squares
                 pos_moves = [[cords[0], int(cords[1]) + 1], [cords[0], int(cords[1]) + 2]]
             else:
                 pos_moves = [[cords[0], int(cords[1]) + 1]]
@@ -30,6 +30,17 @@ class Pawn(object):
                 pos_moves = [[cords[0], int(cords[1]) - 1]]
 
         #check adjacent diagonals for piece taking opportunities
+        
+        """
+        if chessboard:
+            board_cords = RulesEnforcer.coordinate_mapper(cords)
+            if color == 'w':
+                
+            if color == 'b':
+        """
+
+
+
         pos_moves = RulesEnforcer.remove_outofbound_moves(pos_moves)
         return pos_moves
         

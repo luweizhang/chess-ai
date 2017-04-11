@@ -16,6 +16,14 @@ class RulesEnforcer(object):
     def __init__(self):
         pass
 
+    
+
+    @staticmethod
+    def check_square(chessboard):
+        pass
+
+
+
     @staticmethod
     def possible_moves(chessboard, color, piece, coordinate):
         """return possible moves of a piece
@@ -27,7 +35,6 @@ class RulesEnforcer(object):
         output: all possible moves of the piece (lists of lists)
         
         Example of a cooridinate: a2
-        
         """
 
         #if the coordinate is an array 
@@ -167,7 +174,8 @@ class RulesEnforcer(object):
         """takes as input a chess coordinate and maps it to the coordinate in the array
         
         input: chess coordinate (ie a5)
-        output: coordinate of the array to be used in the chessboard
+        output: coordinate of the array to be used in the chessboard 
+                for example: [0,2]
         
         """
         mycoordinate  = list(mycoordinate)
