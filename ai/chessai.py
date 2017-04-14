@@ -103,7 +103,7 @@ class ChessAi(object):
         return round(final_position_score, 4)
        
 
-    def tree_generator(self):
+    def tree_generator(self, depth_override = None):
         """
         Brute force tree generation.  Generates all possible moves (will probably need to add pruning later) 
         
@@ -138,7 +138,7 @@ class ChessAi(object):
         #track the number of moves into the future you are calculating.
         current_depth = 1
 
-        target_depth = or depth_override or self.depth
+        target_depth = depth_override or self.depth
 
         #get the current turn
         current_turn = copy.copy(self.current_turn)
