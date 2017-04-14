@@ -8,7 +8,6 @@ from game import RulesEnforcer
 
 """
 Contains the method necessary for the Chess AI to work
-
 """
 
 class TreeNode(object):
@@ -94,12 +93,20 @@ class ChessAi(object):
                     #penalize for knights on the sides of the board
                     if j == 0 or j == 7:
                         final_position_score -= .1
+
                 if piece == 'n' and color == 'b':
                     final_position_score -= math.pow(1 + (x)*.05, 2)
                     #penalize for knights on the sides of the board
                     if j == 0 or j == 7:
-                        final_position_score += .1
-                    
+                        final_position_score -= .1
+                
+                if piece == 'b' and color == 'w':
+                    #check for open diagonals
+                    new_row = x + 1
+                    new_col = y + 1
+                    chess_position[x][y]
+
+
                 #ideas for more heuristics / features    
                 #score adjustment for bishops with open diagonals
                 #score adjustment for castled king, protected king in early and mid game, 
@@ -147,6 +154,7 @@ class ChessAi(object):
         #track the number of moves into the future you are calculating.
         current_depth = 1
 
+        #override the target depth if depth is explicitly defined
         target_depth = depth_override or self.depth
 
         #get the current turn
@@ -236,10 +244,12 @@ class ChessAi(object):
                 scores.append(self.minimax(child, depth + 1))
             #if its your turn, do max
             if depth % 2 == 0:
+                #finally, when you get back to the root node, output the optimal move
                 if depth == 0:
                     if self.current_turn == 'w':
                         return node.children[scores.index(max(scores))].data + [max(scores)]
                     elif self.current_turn == 'b':
+                        #show the negative score for black to avoid confusion
                         myresult = node.children[scores.index(max(scores))].data
                         myresult[1] = -myresult[1]
                         return myresult + [-max(scores)]
