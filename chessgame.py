@@ -96,18 +96,18 @@ class ChessGame(RulesEnforcer,ChessAi):
         return self.current_turn
 
     
-    def recommend_move(self):
+    def recommend_move(self, depth_override = None):
         """
         Use the AI to recommend a move (will not actually make the move)
         """
-        self.tree_generator()
+        self.tree_generator(depth_override)
         return self.minimax(self.current_game_state, 0)
 
-    def make_move_ai(self):
+    def make_move_ai(self, depth_override = None):
         """
         Let the AI make the move
         """
-        myoutput = self.recommend_move()
+        myoutput = self.recommend_move(depth_override)
         start  = myoutput[2]
         finish = myoutput[3]
 
