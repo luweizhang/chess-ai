@@ -53,11 +53,11 @@ class ChessAi(object):
         output: a float representing how good the position is 
         (positive score means white is winning, negative score means that black is winning)
         
-        Heuristic algorithm example:
+        Example of a possible heuristic algorithm:
         position_score = sum_of_pieces + king_castled? + pawn_islands? + free_bishops? + forward_knights?
         
         developed pieces:
-        forward kxnights
+        forward knights
         forward pawn (more likely to castle)
         pawn islands (these are bad)
         bishops with open diagonals
@@ -99,16 +99,82 @@ class ChessAi(object):
                     #penalize for knights on the sides of the board
                     if j == 0 or j == 7:
                         final_position_score -= .1
-                
+
+                #score adjustment for bishops with open diagonals
                 if piece == 'b' and color == 'w':
+                    #check for open diagonals
+                    new_row = x - 1
+                    new_col = y + 1
+                    while new_row >= 0 and new_col <= 7:
+                        square = chess_position[x][y]
+                        #add points for open diagonals
+                        if square == '0-0':
+                            final_position_score += .05
+                            new_row -= 1
+                            new_col += 1
+                            continue
+                        elif piece.split('-')[0] == 'b':
+                            final_position_score += .25
+                            break
+                        elif piece.split('-')[0] == 'w':
+                            break
+
+                if piece == 'b' and color == 'w':
+                    #check for open diagonals
+                    new_row = x - 1
+                    new_col = y - 1
+                    while new_row >= 0 and new_col >= 0:
+                        square = chess_position[x][y]
+                        #add points for open diagonals
+                        if square == '0-0':
+                            final_position_score += .05
+                            new_row -= 1
+                            new_col -= 1
+                            continue
+                        elif piece.split('-')[0] == 'b':
+                            final_position_score += .25
+                            break
+                        elif piece.split('-')[0] == 'w':
+                            break
+
+                #score adjustment for bishops with open diagonals
+                if piece == 'b' and color == 'b':
                     #check for open diagonals
                     new_row = x + 1
                     new_col = y + 1
-                    chess_position[x][y]
+                    while new_row <= 7 and new_col <= 7:
+                        square = chess_position[x][y]
+                        #add points for open diagonals
+                        if square == '0-0':
+                            final_position_score += .05
+                            new_row -= 1
+                            new_col += 1
+                            continue
+                        elif piece.split('-')[0] == 'w':
+                            final_position_score += .25
+                            break
+                        elif piece.split('-')[0] == 'b':
+                            break
 
+                if piece == 'b' and color == 'b':
+                    #check for open diagonals
+                    new_row = x + 1
+                    new_col = y - 1
+                    while new_row <= 7 and new_col >= 0:
+                        square = chess_position[x][y]
+                        #add points for open diagonals
+                        if square == '0-0':
+                            final_position_score += .05
+                            new_row -= 1
+                            new_col -= 1
+                            continue
+                        elif piece.split('-')[0] == 'w':
+                            final_position_score += .25
+                            break
+                        elif piece.split('-')[0] == 'b':
+                            break
 
                 #ideas for more heuristics / features    
-                #score adjustment for bishops with open diagonals
                 #score adjustment for castled king, protected king in early and mid game, 
                 #developed king in late game
                 #score adjustment for open lane for rook
