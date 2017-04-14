@@ -34,42 +34,42 @@ class Pawn(object):
             board_cords = RulesEnforcer.coordinate_mapper(cords)
             if color == 'w':
                 #check diagonal left
-                if board_cords[1] > 0:
-                    board_cords[0] -= 1
-                    board_cords[1] -= 1
-                    square = chessboard[board_cords[0]][board_cords[1]]
+                if board_cords[0] > 0 and board_cords[1] > 0:
+                    row    = board_cords[0] - 1
+                    column = board_cords[1] - 1
+                    square = chessboard[row][column]
                     if square.split('-')[0] == 'b':
-                        final_cord = RulesEnforcer.coordinate_mapper_reverse(board_cords)
-                        pos_moves.append([list(final_cord)])
+                        final_cord = RulesEnforcer.coordinate_mapper_reverse([row,column])
+                        pos_moves.append([final_cord[0],int(final_cord[1])])
 
                 #check diagonal right
-                if board_cords[1] < 7:
-                    board_cords[0] -= 1
-                    board_cords[1] += 1
-                    square = chessboard[board_cords[0]][board_cords[1]]
+                if board_cords[0] > 0 and board_cords[1] < 7:
+                    row    = board_cords[0] - 1
+                    column = board_cords[1] + 1
+                    square = chessboard[row][column]
                     if square.split('-')[0] == 'b':
-                        final_cord = RulesEnforcer.coordinate_mapper_reverse(board_cords)
-                        pos_moves.append([list(final_cord)])
+                        final_cord = RulesEnforcer.coordinate_mapper_reverse([row,column])
+                        pos_moves.append([final_cord[0],int(final_cord[1])])
 
                 
             if color == 'b':
                 #check diagonal left
-                if board_cords[1] > 0:
-                    board_cords[0] += 1
-                    board_cords[1] -= 1
-                    square = chessboard[board_cords[0]][board_cords[1]]
+                if board_cords[0] < 7 and board_cords[1] > 0:
+                    row    = board_cords[0] + 1
+                    column = board_cords[1] - 1
+                    square = chessboard[row][column] 
                     if square.split('-')[0] == 'w':
-                        final_cord = RulesEnforcer.coordinate_mapper_reverse(board_cords)
-                        pos_moves.append([list(final_cord)])
+                        final_cord = RulesEnforcer.coordinate_mapper_reverse([row,column])
+                        pos_moves.append([final_cord[0],int(final_cord[1])])
 
                 #check diagonal right
-                if board_cords[1] < 7:
-                    board_cords[0] += 1
-                    board_cords[1] += 1
-                    square = chessboard[board_cords[0]][board_cords[1]]
+                if board_cords[0] < 7 and board_cords[1] < 7:
+                    row    = board_cords[0] + 1
+                    column = board_cords[1] + 1
+                    square = chessboard[row][column]
                     if square.split('-')[0] == 'w':
-                        final_cord = RulesEnforcer.coordinate_mapper_reverse(board_cords)
-                        pos_moves.append([list(final_cord)])
+                        final_cord = RulesEnforcer.coordinate_mapper_reverse([row,column])
+                        pos_moves.append([final_cord[0],int(final_cord[1])])
 
         pos_moves = RulesEnforcer.remove_outofbound_moves(pos_moves)
         return pos_moves

@@ -108,13 +108,13 @@ class ChessGame(RulesEnforcer,ChessAi):
         Let the AI make the move
         """
         myoutput = self.recommend_move()
-        start = myoutput[2]
+        start  = myoutput[2]
         finish = myoutput[3]
 
         self.make_move(start, finish)
         print(start)
         print(finish)
-        
+
         return self.chessboard
 
 
@@ -165,7 +165,7 @@ class ChessGame(RulesEnforcer,ChessAi):
             return "invalid move, cannot take your own piece!"
         elif self.current_turn != destination_color and destination_color != '0':
             if destination_piece == 'k':
-                return "game over, " + self.whose_turn + " has won"
+                return "game over, " + self.current_turn + " has won"
             elif self.current_turn == 'w':
                 self.black_taken.append(destination_piece)
             elif self.current_turn == 'b':
