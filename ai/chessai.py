@@ -91,14 +91,23 @@ class ChessAi(object):
                 #score adjustment for developed knights (plus .1 for each square that the knight is advanced)
                 if piece == 'n' and color == 'w':
                     final_position_score += math.pow(1 + (8 - x - 1)*.05, 2)
+                    #penalize for knights on the sides of the board
+                    if j == 0 or j == 7:
+                        final_position_score -= .1
                 if piece == 'n' and color == 'b':
                     final_position_score -= math.pow(1 + (x)*.05, 2)
+                    #penalize for knights on the sides of the board
+                    if j == 0 or j == 7:
+                        final_position_score += .1
                     
-
                 #ideas for more heuristics / features    
-                #score penalty for knights that are on the edge of the screen
                 #score adjustment for bishops with open diagonals
-                #score adjustment for castled king
+                #score adjustment for castled king, protected king in early and mid game, 
+                #developed king in late game
+                #score adjustment for open lane for rook
+                #score adjustment for queen with open lanes
+                #score adjustment for strong pawn structure
+
 
         return round(final_position_score, 4)
        
@@ -248,11 +257,16 @@ class ChessAi(object):
 
             #if its your turn, do max
             if depth % 2 == 0:
-                return max(scores)
+                max_scores = max(scores)
+                #store in the max or min score so you know how the chess engine evaluates the position
+                self.future_position_score = max(scores)
+                return max_scores
             #if its the opponents turn, do min
             else:
-                return min(scores)
-
+                min_scores = min(scores)
+                #store in the max or min score so you know how the chess engine evaluates the position
+                self.future_position_score = min(scores).
+                return min_scores
 
     @staticmethod
     def make_hypothetical_move(start, finish, chessboard):
