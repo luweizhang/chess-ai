@@ -31,14 +31,18 @@ class Pawn(object):
                 else:
                     pos_moves = [[cords[0], int(cords[1]) - 1]]
 
+        
+        obstructed = False
         if chessboard:
             pos_moves = []
             if color == 'w':
                 move1 = [cords[0], int(cords[1]) + 1]
                 if RulesEnforcer.collision_detection(move1, color, chessboard) not in ["friend","enemy"]:
                     pos_moves.append(move1)
+                else:
+                    obstructed = True
 
-                if int(cords[1]) == 2:
+                if int(cords[1]) == 2 and obstructed == False:
                     move2 = [cords[0], int(cords[1]) + 2]
                     if RulesEnforcer.collision_detection(move2, color, chessboard) not in ["friend","enemy"]:
                         pos_moves.append(move2)
@@ -46,12 +50,13 @@ class Pawn(object):
                 move1 = [cords[0], int(cords[1]) - 1]
                 if RulesEnforcer.collision_detection(move1, color, chessboard) not in ["friend","enemy"]:
                     pos_moves.append(move1)
+                else:
+                    obstructed = True
 
-                if int(cords[1]) == 7:
+                if int(cords[1]) == 7 and obstructed == False:
                     move2 = [cords[0], int(cords[1]) - 2]
                     if RulesEnforcer.collision_detection(move2, color, chessboard) not in ["friend","enemy"]:
                         pos_moves.append(move2)
-
 
         #check adjacent diagonals for piece taking opportunities
         if chessboard:

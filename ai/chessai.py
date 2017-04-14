@@ -138,6 +138,8 @@ class ChessAi(object):
         #track the number of moves into the future you are calculating.
         current_depth = 1
 
+        target_depth = or depth_override or self.depth
+
         #get the current turn
         current_turn = copy.copy(self.current_turn)
 
