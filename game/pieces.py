@@ -17,17 +17,41 @@ class Pawn(object):
         takes as input the coordinate and color of the piece, outputs the possible moves
         Pawns can attack adjacent diagonals
         """
-        if color == 'w':
-            if int(cords[1]) == 2:
-                #if the pawn is at the starting position then it can move either one or two squares
-                pos_moves = [[cords[0], int(cords[1]) + 1], [cords[0], int(cords[1]) + 2]]
-            else:
-                pos_moves = [[cords[0], int(cords[1]) + 1]]
-        if color == 'b':
-            if int(cords[1]) == 7:
-                pos_moves = [[cords[0], int(cords[1]) - 1], [cords[0], int(cords[1]) - 2]]
-            else:
-                pos_moves = [[cords[0], int(cords[1]) - 1]]
+        
+        if not chessboard:
+            if color == 'w':
+                if int(cords[1]) == 2:
+                    #if the pawn is at the starting position then it can move either one or two squares
+                    pos_moves = [[cords[0], int(cords[1]) + 1], [cords[0], int(cords[1]) + 2]]
+                else:
+                    pos_moves = [[cords[0], int(cords[1]) + 1]]
+            if color == 'b':
+                if int(cords[1]) == 7:
+                    pos_moves = [[cords[0], int(cords[1]) - 1], [cords[0], int(cords[1]) - 2]]
+                else:
+                    pos_moves = [[cords[0], int(cords[1]) - 1]]
+
+        if chessboard:
+            pos_moves = []
+            if color == 'w':
+                move1 = [cords[0], int(cords[1]) + 1]
+                if RulesEnforcer.collision_detection(move1, color, chessboard) not in ["friend","enemy"]:
+                    pos_moves.append(move1)
+
+                if int(cords[1]) == 2:
+                    move2 = [cords[0], int(cords[1]) + 2]
+                    if RulesEnforcer.collision_detection(move2, color, chessboard) not in ["friend","enemy"]:
+                        pos_moves.append(move2)
+            if color == 'b':
+                move1 = [cords[0], int(cords[1]) - 1]
+                if RulesEnforcer.collision_detection(move1, color, chessboard) not in ["friend","enemy"]:
+                    pos_moves.append(move1)
+
+                if int(cords[1]) == 7:
+                    move2 = [cords[0], int(cords[1]) - 2]
+                    if RulesEnforcer.collision_detection(move2, color, chessboard) not in ["friend","enemy"]:
+                        pos_moves.append(move2)
+
 
         #check adjacent diagonals for piece taking opportunities
         if chessboard:
@@ -50,7 +74,6 @@ class Pawn(object):
                     if square.split('-')[0] == 'b':
                         final_cord = RulesEnforcer.coordinate_mapper_reverse([row,column])
                         pos_moves.append([final_cord[0],int(final_cord[1])])
-
                 
             if color == 'b':
                 #check diagonal left

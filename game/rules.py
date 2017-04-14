@@ -162,7 +162,8 @@ class RulesEnforcer(object):
             return "enemy"
         elif color == 'b' and piece.split('-')[0] == 'w':
             return "enemy"
-        pass
+        else:
+            return "empty"
 
 
     @staticmethod            
