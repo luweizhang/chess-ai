@@ -144,7 +144,7 @@ class ChessAi(object):
         current_turn = copy.copy(self.current_turn)
 
         #keep searching until the desired AI depth has been reached. 
-        while current_depth <= self.depth:
+        while current_depth <= depth_override:
             for position in current_positions:
                 #returns a dictionary of possible chess moves
                 pos_moves = RulesEnforcer.all_possible_moves(position.data[0], current_turn)
