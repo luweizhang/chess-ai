@@ -21,7 +21,8 @@ When it is your turn, you want to optimize for your outcome, therefore you want 
 
 When it is your opponents turn, he wants to minimize your outcome, therefore it calculates the min() position score.
 
-Image result for explanation of minimax
+![alt tag](https://www3.ntu.edu.sg/home/ehchua/programming/java/images/GameTTT_minimax.png)
+
 
 The guide below explains minimax very well:
 http://web.cs.ucla.edu/~rosen/161/notes/minimax.html
