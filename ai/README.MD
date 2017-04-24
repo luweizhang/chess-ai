@@ -1,4 +1,4 @@
-# Explanation of the tree generator:
+### Explanation of the tree generator:
 
 The tree generator component of the chess AI generates the possible future board positions based on the possible moves that the pieces can make.  At any given position, there are on average 20 possible moves that can be made in chess.
 
