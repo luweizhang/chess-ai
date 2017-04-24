@@ -2,7 +2,8 @@
 
 The tree generator component of the chess AI generates the possible future board positions based on the possible moves that the pieces can make.  At any given position, there are on average 20 possible moves that can be made in chess.
 
- Image result for chess ai
+![alt tag](http://www.andreykurenkov.com/writing/images/2016-4-15-a-brief-history-of-game-ai/2-evalfunc.png)
+
 The above illustrates a chess tree.  Possible moves are generated from the current position to create hypothetical future states. 
 
 ## Explanation of the evaluation function
