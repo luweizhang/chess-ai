@@ -5,14 +5,14 @@ The tree generator component of the chess AI generates the possible future board
  Image result for chess ai
 The above illustrates a chess tree.  Possible moves are generated from the current position to create hypothetical future states. 
 
-Explanation of the evaluation function
+## Explanation of the evaluation function
 
 I would say that this is the intuitive component of the chess AI.  Given an 8x8 chess position, the evaluation function with determine between a move is good or not by assigning it a numerical score.   A negative score means that black is winning, a positive score means that white is winning.
 Image result for brains
 This component of the AI is the most important because it is the one that can be optimized.
 
 
-Explanation of the minimax algorithm:
+## Explanation of the minimax algorithm:
 
 The minimax algorithm essentially tries to find the optimal move from a tree of moves.   Starting from the leaves of the tree, you want to backwards calculate back to the optimal move by alternating between min() and max() (hence the name, minimax). 
 
