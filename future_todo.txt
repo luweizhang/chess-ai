@@ -1,1 +1,5 @@
-Create a players module (players.py) that contains different evaluation functions
+This text file contains ideas for future features
+
+Create a players module (players.py) that contains different player personalities / different evaluation functions.
+Create a tournaments module (tournament.py) that will enable different ai personalities to play against each other.
+Create a javascript based UI
