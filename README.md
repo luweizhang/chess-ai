@@ -39,6 +39,7 @@ I would say that this is the intuitive component of the chess AI.  Given an 8x8 
 
 This component of the AI is the most important because it is the one that can be optimized.
 
+![alt tag](http://www.neurosciencemarketing.com/wp-content/uploads/2015/06/einstein-valuable-540x338.jpg)
 
 ## Explanation of the minimax algorithm:
 
