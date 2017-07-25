@@ -1,1 +1,1 @@
-
+Create a players module (players.py) that contains different evaluation functions
