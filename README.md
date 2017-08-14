@@ -64,3 +64,8 @@ Alpha-beta pruning is a heuristic that can be used to greatly reduce the space o
 The guide below explains alphabeta pruning very well:
 http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html
 
+## Explanation of Monte Carlo Tree Search
+
+Monte Carlo tree search involves treating the game as a multi-armed bandit problem.  Many games are simulated to the end and the outcome of the game is backwards propagated through the tree.
+
+https://jeffbradberry.com/posts/2015/09/intro-to-monte-carlo-tree-search/
