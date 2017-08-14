@@ -3,8 +3,9 @@
 This is a chess AI and chess game built using python. 
 
 I'm trying use a similar AI design as Alpha Go built by Google Deepmind.
+See this paper for more information: https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf
 
-This AI combines probabilistic tree search with a convolutional neural net.
+This AI using a convolutional neural net as its evaluation function.
 
 The trained convolutional net will be used as an evaluation function to narrow down the search space of the tree search.  After the search space has been narrowed down, the optimal move will be determined using the minimax algorithm
 
