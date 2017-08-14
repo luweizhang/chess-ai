@@ -55,3 +55,10 @@ When it is your opponents turn, he wants to minimize your outcome, therefore it 
 The guide below explains minimax very well:
 http://web.cs.ucla.edu/~rosen/161/notes/minimax.html
 
+## Explanation of alpha-beta pruning:
+
+Alpha-beta pruning is a heuristic that can be used to greatly reduce the space of the tree search.  
+(more explanation coming soon)
+
+http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html
+
