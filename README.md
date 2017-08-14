@@ -58,7 +58,7 @@ http://web.cs.ucla.edu/~rosen/161/notes/minimax.html
 
 ## Explanation of alpha-beta pruning:
 
-Alpha-beta pruning is a heuristic that can be used to greatly reduce the space of the tree search.  It works by pruning the search tree as you generate it by ruling out paths that you believe your opponent will never take.  
+Alpha-beta pruning is a process that can be used to greatly reduce the space of the tree search.  It works by pruning the search tree as you generate it by ruling out paths that you believe your opponent will never take.  
 (more explanation coming soon)
 
 The guide below explains alphabeta pruning very well:
