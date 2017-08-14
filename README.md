@@ -66,6 +66,6 @@ http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html
 
 ## Explanation of Monte Carlo Tree Search
 
-Monte Carlo tree search involves treating the game as a multi-armed bandit problem.  Many games are simulated to the end and the outcome of the game is backwards propagated through the tree.  Going through this process essentially creates more training data for your evaluation function (DeepMind calls this the "value network")
+Monte Carlo tree search involves treating the game as a multi-armed bandit problem.  Many games are simulated to the end and the outcome of the game is backwards propagated through the tree.  Going through this process essentially creates more training data for your evaluation function (DeepMind calls this the "value network").  Self-play simulations are a form of reinforcement learning (RL).
 
 https://jeffbradberry.com/posts/2015/09/intro-to-monte-carlo-tree-search/
