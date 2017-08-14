@@ -6,3 +6,4 @@ Create a javascript based UI
 
 Implement alpha beta pruning (i can't believe I haven't done this yet)
 Implement quiescent search
+Implement monte carlo tree search
