@@ -39,6 +39,8 @@ I would say that this is the intuitive component of the chess AI.  Given an 8x8 
 
 This component of the AI is the most important because it is the one that can be optimized.
 
+This chess
+
 ![alt tag](http://www.neurosciencemarketing.com/wp-content/uploads/2015/06/einstein-valuable-540x338.jpg)
 
 ## Explanation of the minimax algorithm:
@@ -57,8 +59,9 @@ http://web.cs.ucla.edu/~rosen/161/notes/minimax.html
 
 ## Explanation of alpha-beta pruning:
 
-Alpha-beta pruning is a heuristic that can be used to greatly reduce the space of the tree search.  
+Alpha-beta pruning is a heuristic that can be used to greatly reduce the space of the tree search.  It works by pruning the search tree as you generate it by ruling out paths that you believe your opponent will never take.  
 (more explanation coming soon)
 
+The guide below explains alphabeta pruning very well:
 http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html
 
