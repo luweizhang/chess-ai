@@ -56,7 +56,7 @@ When it is your opponents turn, he wants to minimize your outcome, therefore it 
 The guide below explains minimax very well:
 http://web.cs.ucla.edu/~rosen/161/notes/minimax.html
 
-## Explanation of alpha-beta pruning:
+## Alpha-beta pruning:
 
 Alpha-beta pruning is a process that can be used to greatly reduce the space of the tree search.  It works by pruning the search tree as you generate it by ruling out paths that you believe your opponent will never take.  
 (more explanation coming soon)
@@ -64,8 +64,3 @@ Alpha-beta pruning is a process that can be used to greatly reduce the space of 
 The guide below explains alphabeta pruning very well:
 http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html
 
-## Explanation of Monte Carlo Tree Search
-
-Monte Carlo tree search involves treating the game as a multi-armed bandit problem.  Many games are simulated to the end and the outcome of the game is backwards propagated through the tree.  
-
-https://jeffbradberry.com/posts/2015/09/intro-to-monte-carlo-tree-search/
