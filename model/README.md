@@ -1,6 +1,6 @@
 ## Deep Learning Model
 
-Code for training and executing a deep learning based chess evaluation function, adapting from a deep learning blog post by Erik Bern
+Code for training and executing a deep learning based chess evaluation function, adapted from a deep learning blog post by Erik Bern
 
 You can download games for training from http://www.ficsgames.org/download.html
 
