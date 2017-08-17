@@ -7,7 +7,7 @@ See this paper for more information: https://storage.googleapis.com/deepmind-med
 
 This AI using a convolutional neural net as its evaluation function.
 
-The trained convolutional net will be used as an evaluation function to narrow down the search space of the tree search.  After the search space has been narrowed down, the optimal move will be determined using the minimax algorithm
+The trained convolutional net will be used as an evaluation function to narrow down the search space of the tree search.  After the search space has been narrowed down, the optimal move will be determined using the minimax algorithm (with alpha beta pruning).
 
 
 Please use virtual machine to run this:
