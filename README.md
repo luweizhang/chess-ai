@@ -63,4 +63,3 @@ Alpha-beta pruning is a process that can be used to greatly reduce the space of 
 
 The guide below explains alphabeta pruning very well:
 http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html
-
