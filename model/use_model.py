@@ -1,18 +1,7 @@
 import load
 import pickle
 import theano
-import theano.tensor as T
-import math
-import chess, chess.pgn
-import heapq
-import time
-import re
 import string
-import numpy
-import sunfish
-import pickle
-import random
-import traceback
 
 def get_model_from_pickle(fn):
     f = open(fn)
