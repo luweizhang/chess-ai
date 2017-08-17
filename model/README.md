@@ -7,7 +7,7 @@ You can download games for training from http://www.ficsgames.org/download.html
 ### parse_game.py:  
 Parses a directory full of chess games (.pgn) and outputs as HDF5 format for training
 ### load.py:        
-Helper functions for loading the parsed chess game data
+Helper functions for loading the parsed chess game data (don't need to execute this)
 ### train.py:       
 Train the neural network using Theano and outputs a .pickle file
 ### use_model.py:   
