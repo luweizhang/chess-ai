@@ -11,4 +11,4 @@ Helper functions for loading the parsed chess game data (don't need to execute t
 ### train.py:       
 Train the neural network using Theano and outputs a .pickle file
 ### use_model.py:   
-load the .pickle file to be used in the evaluation function
+load the .pickle file to be used in the game playing evaluation function
