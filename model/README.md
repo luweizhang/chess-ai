@@ -1,4 +1,4 @@
-## Deep Learning Model
+## Deep Learning Model (Theano)
 
 Code for training and executing a deep learning based chess evaluation function, adapted from a deep learning blog post by Erik Bern
 
