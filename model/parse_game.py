@@ -132,7 +132,7 @@ def read_all_games_2(a):
 
 def parse_dir():
     files = []
-    d = '/mnt/games'
+    d = '/games'
     for fn_in in os.listdir(d):
         if not fn_in.endswith('.pgn'):
             continue
