@@ -4,6 +4,5 @@ Create a players module (players.py) that contains different player personalitie
 Create a tournaments module (tournament.py) that will enable different AI personalities (evaluation functions) to play against each other.
 Create a javascript based UI
 
-Implement alpha beta pruning (i can't believe I haven't done this yet)
 Implement quiescent search
 Implement monte carlo tree search and reinforcement learning
