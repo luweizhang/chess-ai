@@ -61,8 +61,8 @@ http://web.cs.ucla.edu/~rosen/161/notes/minimax.html
 Alpha-beta pruning is a process that can be used to greatly reduce the space of the tree search.  It works by pruning the search tree as you generate it by ruling out paths that neither you nor your opponent will never take.  
 
 This is done by keeping track of two values called alpha and beta as you are searching through the tree.  
-Alpha is the maximum lower bound (the lowest score you are willing to accept)
-Beta is the minimum upper bound (the highest score your opponent is willing to accept)
+Alpha is the maximum lower bound (the lowest score you are willing to accept)  
+Beta is the minimum upper bound (the highest score your opponent is willing to accept)  
 
 The guide below explains alphabeta pruning very well:
 http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html
