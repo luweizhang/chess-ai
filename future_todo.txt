@@ -5,4 +5,5 @@ Create a tournaments module (tournament.py) that will enable different AI person
 Create a javascript based UI
 
 Implement quiescent search
-Implement monte carlo tree search and reinforcement learning
+Implement monte carlo tree search 
+Implement reinforcement learning (policy gradient)
