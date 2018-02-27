@@ -2,7 +2,7 @@
 
 This is a chess AI and chess game built using python. 
 
-I'm trying use a similar AI design as Alpha Go built by Google Deepmind.
+I was inspired to try building my own chess ai when I learned about Alpha Go built by Google Deepmind.
 See this paper for more information: https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf
 
 This AI using a convolutional neural net as its evaluation function.
