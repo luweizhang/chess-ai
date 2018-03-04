@@ -36,7 +36,7 @@ The above illustrates a chess tree.  Possible moves are generated from the curre
 
 I would say that this is the intuitive component of the chess AI.  Given an 8x8 chess position, the evaluation function with determine between a move is good or not by assigning it a numerical score.   A negative score means that black is winning, a positive score means that white is winning.
 
-This component of the AI is the most important because it is the one that can be optimized.
+I believe this component of the AI is the most important because it is the one that can be greaty optimized.
 
 The evaluation function can take many forms depending on what approach you want to take. You can use hard coded heuristic features. You could also train a neural network.
 
