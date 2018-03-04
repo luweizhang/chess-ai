@@ -38,7 +38,7 @@ I would say that this is the intuitive component of the chess AI.  Given an 8x8 
 
 I believe this component of the AI is the most important because it is the one that can be greatly optimized.
 
-The evaluation function can take many forms depending on what approach you want to take. You can use hard coded heuristic features. You could also train a neural network.
+The evaluation function can take many forms depending on what approach you want to take. You can use hard coded heuristic features. You could take a model based approach (ie. train a neural network).
 
 ![alt tag](http://www.neurosciencemarketing.com/wp-content/uploads/2015/06/einstein-valuable-540x338.jpg)
 
