@@ -7,3 +7,5 @@ Create a javascript based UI
 Implement quiescent search
 Implement monte carlo tree search 
 Implement reinforcement learning (policy gradient)
+
+https://en.wikipedia.org/wiki/MTD-f -most efficient version of minimax algorithm
