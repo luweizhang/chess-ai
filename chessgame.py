@@ -84,6 +84,8 @@ class ChessGame(RulesEnforcer,ChessAi):
         self.chessboard[0][4] = 'b-k'
         self.chessboard[7][3] = 'w-q'
         self.chessboard[7][4] = 'w-k'
+
+        self.game_over = False
             
     def see_board(self):
         """see the current state of the chessboard"""
@@ -165,6 +167,7 @@ class ChessGame(RulesEnforcer,ChessAi):
             return "invalid move, cannot take your own piece!"
         elif self.current_turn != destination_color and destination_color != '0':
             if destination_piece == 'k':
+                self.game_over = True
                 return "game over, " + self.current_turn + " has won"
             elif self.current_turn == 'w':
                 self.black_taken.append(destination_piece)
