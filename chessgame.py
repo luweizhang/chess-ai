@@ -38,6 +38,8 @@ class ChessGame(RulesEnforcer,ChessAi):
         ChessAi.__init__(self, ai_depth)
         RulesEnforcer.__init__(self)
         #super(ChessGame, self).__init__()
+
+        self.ai_depth = ai_depth
         
         #initialize the chessboard
         self.chessboard = [["0-0"]*8 for i in range(8)]
@@ -98,17 +100,23 @@ class ChessGame(RulesEnforcer,ChessAi):
         return self.current_turn
 
     
-    def recommend_move(self, depth_override = self.ai_depth):
+    def recommend_move(self, depth_override = None):
         """
         Use the AI to recommend a move (will not actually make the move)
         """
+        if not depth_override:
+            depth_override = self.ai_depth
+
         self.tree_generator(depth_override)
         return self.minimax(self.current_game_state, 0)
 
-    def make_move_ai(self, depth_override = self.ai_depth):
+    def make_move_ai(self, depth_override = None):
         """
         Let the AI make the move
         """
+        if not depth_override:
+            depth_override = self.ai_depth
+
         myoutput = self.recommend_move(depth_override)
         start  = myoutput[2]
         finish = myoutput[3]

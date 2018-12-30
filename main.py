@@ -3,4 +3,5 @@
 from chessgame import ChessGame
 
 if __name__ == '__main__':
-	new_game = ChessGame(5)
+	current_game = ChessGame(5)
+	current_game.see_board()
