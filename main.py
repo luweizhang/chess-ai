@@ -3,4 +3,4 @@
 from chessgame import ChessGame
 
 if __name__ == '__main__':
-	new_game = ChessGame()
+	new_game = ChessGame(5)
