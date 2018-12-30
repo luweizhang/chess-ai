@@ -13,8 +13,8 @@ The trained convolutional net will be used as an evaluation function to evaluate
 Please use virtual machine to run this:
 
 ```
-brew install python3
-virtualenv -p /usr/local/bin/python3 venv 
+brew install python@2
+virtualenv -p /usr/local/bin/python2 venv 
 virtualenv venv
 source venv/bin/activate
 pip install ipython notebook
