@@ -341,7 +341,7 @@ class ChessAi(object):
             else:
                 min_scores = min(scores)
                 #store in the max or min score so you know how the chess engine evaluates the position
-                self.future_position_score = min(scores).
+                self.future_position_score = min(scores)
                 return min_scores
 
     @staticmethod
