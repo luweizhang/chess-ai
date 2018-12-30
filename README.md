@@ -24,7 +24,7 @@ python2 -m ipykernel install --user
 
 To play the ai:
 ```
-python2 main.py
+python2 play.py
 ```
 
 You can find more details in my blog:
