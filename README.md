@@ -10,7 +10,7 @@ This AI using a convolutional neural net as its evaluation function.
 The trained convolutional net will be used as an evaluation function to evaluate future states from the tree search.  Then, the optimal move will be determined using the minimax algorithm (with alpha beta pruning).
 
 
-Please use virtual machine to run this:
+Please use/setup virtual machine to run this:
 
 ```
 brew install python@2
@@ -20,6 +20,11 @@ source venv/bin/activate
 pip install ipython notebook
 python2 -m pip install ipykernel #install python2 jupyter kernel
 python2 -m ipykernel install --user
+```
+
+To play the ai:
+```
+python2 main.py
 ```
 
 You can find more details in my blog:
