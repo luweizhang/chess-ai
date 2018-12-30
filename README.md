@@ -18,6 +18,8 @@ virtualenv -p /usr/local/bin/python2 venv
 virtualenv venv
 source venv/bin/activate
 pip install ipython notebook
+python2 -m pip install ipykernel #install python2 jupyter kernel
+python2 -m ipykernel install --user
 ```
 
 You can find more details in my blog:
