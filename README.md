@@ -17,9 +17,6 @@ brew install python@2
 virtualenv -p /usr/local/bin/python2 venv 
 virtualenv venv
 source venv/bin/activate
-pip install ipython notebook
-python2 -m pip install ipykernel #install python2 jupyter kernel
-python2 -m ipykernel install --user
 ```
 
 To play the ai:
@@ -73,3 +70,14 @@ Beta is the minimum upper bound (the highest score your opponent is willing to a
 
 The guide below explains alphabeta pruning very well:
 http://web.cs.ucla.edu/~rosen/161/notes/alphabeta.html
+
+
+
+### Appendix
+
+#### Install Python2 ipython notebook environment
+```
+pip install ipython notebook
+python2 -m pip install ipykernel #install python2 jupyter kernel
+python2 -m ipykernel install --user
+```
