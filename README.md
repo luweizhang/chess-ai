@@ -23,7 +23,7 @@ To play the ai:
 ```
 python2 play.py
 ```
-You will be prompted to enter a starting and ending coordinate for your move.  I.e a2, a4, g4, etc etc
+You will be prompted to enter a starting and ending coordinate for your move.  I.e `a2` -> `a4`
 
 
 You can find more details in my blog:
