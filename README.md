@@ -39,9 +39,9 @@ The above illustrates a chess tree.  Possible moves are generated from the curre
 
 ## Evaluation function
 
-I would say that this is the intuitive component of the chess AI.  Given an 8x8 chess position, the evaluation function with determine between a move is good or not by assigning it a numerical score.   A negative score means that black is winning, a positive score means that white is winning.
+I would say that this is the intuitive component of the chess AI.  Given an 8x8 chess position, the evaluation function with determine wheter a move is good or not by assigning it a numerical score.   A negative score means that black is winning, a positive score means that white is winning.
 
-The evaluation function can take many forms depending on what approach you want to take. You can use hard coded heuristic features. You could take a model based approach (ie. train a neural network).
+The evaluation function can take many forms depending on what approach you want to take. You can use hard coded heuristic features. You could take a model based approach (ie. train a neural network), etc etc.
 
 ![alt tag](http://www.neurosciencemarketing.com/wp-content/uploads/2015/06/einstein-valuable-540x338.jpg)
 
