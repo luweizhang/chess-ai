@@ -2,9 +2,6 @@
 
 This is a chess AI and chess game built using python. 
 
-I was inspired to try building my own chess ai when I learned about Alpha Go built by Google Deepmind.
-See this paper for more information: https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf
-
 A trained convolutional net will be used as an evaluation function to evaluate future states from the tree search.  Then, the optimal move will be determined using the minimax algorithm (with alpha beta pruning).
 
 
