@@ -44,7 +44,7 @@ The evaluation function can take many forms depending on what approach you want 
 
 ## Minimax algorithm:
 
-The minimax algorithm essentially tries to find the optimal move from a tree of moves.   Starting from the leaves of the tree, you want to backwards calculate back to the optimal move by alternating between min() and max() (hence the name, minimax). 
+The minimax algorithm essentially tries to find the optimal move from a tree of moves.   Starting from the leaves of the tree which represent future states, you want to  propogate back to the present root node by alternating between min() and max() (hence the name, minimax). 
 
 When it is your turn, you want to optimize for your outcome, therefore you want to calculate the max() position score. 
 
