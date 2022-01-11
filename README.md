@@ -2,7 +2,7 @@
 
 This is a chess AI and chess game built using python. 
 
-A trained convolutional net will be used as an evaluation function to evaluate future states from the tree search.  Then, the optimal move will be determined using the minimax algorithm (with alpha beta pruning).
+The end goal is to have a trained convolutional net be used as an evaluation function to evaluate future states from the tree search.  Then, the optimal move will be determined using the minimax algorithm (with alpha beta pruning).
 
 
 Please use/setup virtual machine to run this:
