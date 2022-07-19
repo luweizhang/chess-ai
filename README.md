@@ -36,7 +36,7 @@ The above illustrates a chess tree.  Possible moves are generated from the curre
 
 ## Evaluation function
 
-This is the "intuition" of the chess AI.  Given an 8x8 chess position, the evaluation function with determine whether a move is good or not by assigning it a numerical score.   A negative score means that black is winning, a positive score means that white is winning.
+This is the "intuition" of the chess AI.  Given an 8x8 chess position, the evaluation function will determine whether a move is good or not by assigning it a numerical score.   A negative score means that black is winning, a positive score means that white is winning.
 
 The evaluation function can take many forms depending on what approach you want to take. You can use hard coded heuristic features. You could take a model based approach (ie. train a neural network), etc etc.
 
